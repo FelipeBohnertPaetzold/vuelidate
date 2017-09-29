@@ -1,4 +1,5 @@
-import { withParams } from './common'
+import {req, withParams} from './common'
 export default (max) => withParams(
-  { type: 'minValue', max },
-    value => value <= max)
+  { type: 'maxValue', max }, value =>
+    !req(value) || (!/\s/.test(value) && value <= max)
+)
